@@ -1,0 +1,9 @@
+function bit [31:0] swap_adj_bits(bit [31:0] vector);
+  even_bits_mask = 32'hAAAA_AAAA;
+  odd_bits_mask  = 32'h5555_5555;
+
+  even_bits = (vector & event_bits_mask) >> 1;
+  odd_bits  = (vector & odd_bits_mask) << 1;
+
+  swap_adj_bits = even_bits | odd_bits;
+endfunction : swap_adj_bits
