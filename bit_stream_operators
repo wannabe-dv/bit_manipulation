@@ -1,0 +1,25 @@
+// Bit stream operators
+// The basic fundamental is that the RHS and LHS should have the same bit width they are operating with
+
+// Packed Logic to Unpack logic
+module test;
+bit [1:0] unpack [4][10];
+bit [1:0] pack;
+
+initial begin
+  int i= 0;
+  pack = $urandom_range(0, 3);
+
+  {>>{unpack[i][i+:10]}} = {10{pack}};  // As we can see, we are repeating the 2 bit packed value 10 times to get effective 20 bits, since we want to duplicate the same packed value on all the unpacked 2nd dimension
+end
+endmodule :test
+
+// Unpacked Logic to Packed logic
+module test;
+bit [19:0] pack;
+bit [1:0]  unpack [4][10];
+
+initial begin
+  pack = {>>{unpack[0]}}; 
+end
+endmodule : test
