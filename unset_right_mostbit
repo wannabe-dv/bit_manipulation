@@ -1,0 +1,10 @@
+// Unset right most bit
+int number;
+
+number = $urandom_range(0, 2**31-1);
+
+number &= number-1;
+
+OR
+
+number &= (~(1 << ($clog2(number & (-number)))));
