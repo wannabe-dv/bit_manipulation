@@ -1,0 +1,6 @@
+// Turn off Kth bit
+
+int number;
+int k = $urandom_range(0,31);  // Generate random bit we want to turn off
+
+number = (~(1 << k));  // 0000k0000 -> 111101111
