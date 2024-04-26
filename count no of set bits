@@ -1,0 +1,17 @@
+// Count number of set bits
+module tb;
+  int number = $urandom_range(0, 2**31-1);
+
+  // Brute force
+  initial begin
+    for (int i=0; i<32; i++) begin
+      if (32'd1 & (number >> i)) cntr+=1;
+    end
+  end
+
+  // Optimized. We keep on looking for the rightmost bit till the value of the number is zero
+  while (!number) begin
+    number &= number-1;
+    cntr+=1;
+  end
+endmodule
