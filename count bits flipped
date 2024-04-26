@@ -1,0 +1,12 @@
+// Count number of bits flipped
+module tb;
+  int x = $urandom_range(0, 31);
+  int y = $urandom_range(0, 31);
+  int number, cntr;
+
+  number = x^y;
+  while (number) begin
+    number &= number-1;
+    cntr+=1;
+  end
+endmodule : tb
