@@ -1,0 +1,13 @@
+// Swap a sequence of adjacent bits provided
+// You have a bit position m and bit position n that needs to be swapped along with how many consecutive bits to swap
+int x = $urandom_range(0, 1023);
+int m = 1;
+int n = 6;
+int c = 3;
+
+initial begin
+  x1 = ((2**c-1) << m ) & x;
+  x2 = ((2**c-1) << n ) & x;
+  XOR= (x1 >> m) ^ (x2 >> n);
+  result = (XOR << m) | (XOR << n);
+end
