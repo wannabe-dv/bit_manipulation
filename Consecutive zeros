@@ -1,0 +1,13 @@
+localparam ZEROS = 10;
+
+rand bit [31:0] number;
+rand bit [31:0] mask = ~{ZEROS{1'b1}};
+rand int shift;
+
+constraint shift_c {
+  shift inside {[0:32-ZEROS]};
+}
+
+constraint number_c {
+  number == ((mask << shift) | (mask >> 32-shift));
+}
