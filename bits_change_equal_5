@@ -1,0 +1,19 @@
+class bits_changed #(int BITS=8);
+  
+  bit [BITS-1:0] prev_value;
+  
+  rand bit [BITS-1:-0] value;
+  
+  constraint bits_change_c {
+    $countones(value ^ prev_value) == 5;
+  }
+  
+  function void pre_randomize();
+    prev_value = $urandom_range(0, 2**BITS-1);  
+  endfunction : pre_randomize
+  
+  function void post_randomize();
+    $display("prev_value = %b, value = %b",prev_value,value);
+  endfunction : post_randomize
+  
+endclass : bits_changed
